@@ -35,6 +35,10 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         filename = sys.argv[1]
         remove_duplicates = sys.argv[2].lower() == "yes"
+        
+        # Si pasan el parámetro de orden (ej: "desc" o "asc")
+        if len(sys.argv) == 4:
+            ascending = sys.argv[3].lower() != "desc"
     else:
         print(MESSAGES["missing_args"])
         print(MESSAGES["second_arg"])
@@ -55,4 +59,5 @@ if __name__ == "__main__":
     if remove_duplicates:
         word_list = remove_duplicates_from_list(word_list)
 
-    print(sort_list(word_list))
+    # Le pasamos nuestra variable 'ascending' a la función de ordenamiento
+    print(sort_list(word_list, ascending=ascending))
